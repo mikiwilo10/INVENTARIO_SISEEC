@@ -41,8 +41,18 @@ public class ONCategoria {
         return cat;
     }
     
-    public Categoria buscarCategoria(String codigoCategoria) throws Exception {
-       Categoria cat=daocategoria.buscarCategoria(codigoCategoria);
+    public Categoria buscarCategoria(String codigoCategoria, String descripcion) throws Exception {
+       Categoria cat=daocategoria.buscarCategoria(codigoCategoria, descripcion);
+        if (cat==null) {
+            return null;
+           
+        } else {
+            return cat;
+        }
+    }
+    
+    public Categoria buscarCategoriaDescripcion(String parametro) throws Exception {
+       Categoria cat=daocategoria.buscarCategoriaDescripcion(parametro);
         if (cat==null) {
             return null;
            
@@ -64,12 +74,17 @@ public class ONCategoria {
 //
 //    }
 //
-//    public List<Categoria> ListaCategorias() throws Exception {
-//        String jpql = "SELECT c FROM Marco c";
-//
-//        Query q = em.createQuery(jpql, Marco.class);
-//
-//        return q.getResultList();
-//    }
+    
+    
+     public void actualizarestadoCategoia(Categoria cat) throws Exception {
+
+       daocategoria.actualizarestadoCategoia(cat);
+
+    }
+    public List<Categoria> ListaCategorias() throws Exception {
+       List<Categoria> listacategoria=null;
+       listacategoria=daocategoria.ListaCategorias();
+        return listacategoria;
+    }
 
 }

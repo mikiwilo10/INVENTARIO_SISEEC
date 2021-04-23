@@ -35,6 +35,8 @@ public class RestCategoria {
     @Inject
     private ONCategoria oncategoria;
 
+    Respuesta respestaCategoria;
+
 //    @GET
 //    @Path("/listado")
 //    @Produces(MediaType.APPLICATION_JSON)
@@ -125,7 +127,7 @@ public class RestCategoria {
     public Respuesta transferirREST(Categoria categoria) throws Exception {
         Categoria cat = null;
         Respuesta resp = new Respuesta();
-        cat = oncategoria.buscarCategoria(categoria.getCodigoCategoria());
+        cat = oncategoria.buscarCategoria(categoria.getCodigoCategoria(), categoria.getDescripcion());
 
         try {
             if (cat == null) {
@@ -149,65 +151,52 @@ public class RestCategoria {
         return resp;
     }
 
-//   	@GET
-//   	@Path("logins")
-//   	@Produces("application/json")
-//   	public Response loginsocio(@QueryParam("usuario") String usu, @QueryParam("password") String pws) throws Exception {
-//   		SocioEN p = on.buscarPersona(usu, pws);
-//   		if (p == null) {
-//   			return Response.ok(p).header("Access-Control-Allow-Origin", "*").build();
-//   		}
-//   		return Response.ok(p).header("Access-Control-Allow-Origin", "*").build();
-//
-//   	}
-//
-//   	@GET
-//   	@Path("Updtelogin")
-//   	@Produces(MediaType.APPLICATION_JSON)
-//   	@Consumes(MediaType.APPLICATION_JSON)
-//   	public Response actualizarsocio(@QueryParam("email") String email, @QueryParam("clave") String clave)
-//   			throws Exception {
-//   		on.actualizarSocio(email, clave);
-//   		
-//   	
-//   		System.out.println("Kajajistan..." + email + clave);
-//
-//   		return Response.ok("transfiriendo").header("Access-Control-Allow-Origin", "*").build();
-//   	}
+    @PUT
+    @Path("actualizarCategoria")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Respuesta actualizarsocio(Categoria cat) throws Exception {
+        try {
+            respestaCategoria = new Respuesta();
+            respestaCategoria.setCodigo(1);
+            respestaCategoria.setMensaje("Actualizado Estado Categoria");
+            oncategoria.actualizarestadoCategoia(cat);
+            //return Response.ok(respestaCategoria).header("Access-Control-Allow-Origin", "*").build();
+           
+        } catch (Exception e) {
+            respestaCategoria.setCodigo(2);
+            respestaCategoria.setMensaje("Error Actualizado Estado");
+           // return 
+        }
+         return respestaCategoria;
+    }
 //
 //
-//   	@GET
-//   	@Path("/CuentaSocio")
-//   	@Produces(MediaType.APPLICATION_JSON)
-//   	public Response CuentaSocio(@QueryParam("cedula") String cedula) throws Exception {
-//
-//   		List<CuentaEN> listaCuenta = on.listarCuentaSocio(cedula);
-//
-//   		return Response.ok(listaCuenta).header("Access-Control-Allow-Origin", "*").build();
-//   	}
-//   	
-//   	
-//
-//   	@GET
-//   	@Path("/Credito")
-//   	@Produces(MediaType.APPLICATION_JSON)
-//   	public Response Credito(@QueryParam("cedula") String cedula) throws Exception {
-//
-//   		List<CreditoEN> listaCredito = on.listarCredito(cedula);
-//
-//   		return Response.ok(listaCredito).header("Access-Control-Allow-Origin", "*").build();
-//   	}
+
+    @GET
+    @Path("/buscarCategoria")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response buscarCategoria(@QueryParam("parametro") String parametro) throws Exception {
+
+        Categoria cat = oncategoria.buscarCategoriaDescripcion(parametro);
+
+        return Response.ok(cat).header("Access-Control-Allow-Origin", "*").build();
+       // Response.status(0).
+//                return  null;
+    }
 //   	
 //   	
 //   	
-//	@GET
-//   	@Path("/DetalleCredito")
-//   	@Produces(MediaType.APPLICATION_JSON)
-//   	public Response DetalleCredito(@QueryParam("idcuenta") String idcuenta) throws Exception {
-//
-//   		List<DetalleCreditoEN> detalleCredito =on.Amortizacion(idcuenta);
-//
-//   		return Response.ok(detalleCredito).header("Access-Control-Allow-Origin", "*").build();
-//   	}
-// 
+
+    @GET
+    @Path("/listaCategoria")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Categoria> Categorias() throws Exception {
+
+        List<Categoria> lista = oncategoria.ListaCategorias();
+
+        //return (List<Categoria>) Response.ok(lista).header("Access-Control-Allow-Origin", "*").build();
+        return lista;
+    }
+
 }

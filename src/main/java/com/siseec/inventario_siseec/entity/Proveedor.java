@@ -39,6 +39,10 @@ public class Proveedor {
     @JsonIgnore
     private List<Producto> producto;
 
+    @OneToMany(mappedBy = "proveedorOrden", cascade = {CascadeType.ALL})
+    @JsonIgnore
+    private List<Orden_Compra> ordenCompra;
+
     public int getIdProveedor() {
         return idProveedor;
     }
@@ -46,7 +50,6 @@ public class Proveedor {
     public void setIdProveedor(int idProveedor) {
         this.idProveedor = idProveedor;
     }
-
 
     public String getNombre() {
         return Nombre;
@@ -104,8 +107,6 @@ public class Proveedor {
         this.correoElectronico = correoElectronico;
     }
 
-   
-
     public int getEstado() {
         return estado;
     }
@@ -122,7 +123,4 @@ public class Proveedor {
         this.producto = producto;
     }
 
-   
-    
-    
 }

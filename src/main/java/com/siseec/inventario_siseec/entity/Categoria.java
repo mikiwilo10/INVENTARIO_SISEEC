@@ -27,6 +27,7 @@ public class Categoria {
     private int idCategoria;
     
     private String codigoCategoria;
+    private String nombre;
     private String descripcion;
     private int estado;
     
@@ -49,6 +50,16 @@ public class Categoria {
     public void setCodigoCategoria(String codigoCategoria) {
         this.codigoCategoria = codigoCategoria;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    
 
     public String getDescripcion() {
         return descripcion;

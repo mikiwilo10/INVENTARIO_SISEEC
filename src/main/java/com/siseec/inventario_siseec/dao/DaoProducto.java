@@ -40,9 +40,29 @@ public class DaoProducto {
     public Producto buscarProducto(String codigoProducto) throws Exception {
         Producto c = null;
         try {
-            String jpql = "SELECT p FROM Producto p " + "WHERE codigoProducto LIKE :codigoProducto";
+            //String jpql = "SELECT p FROM Producto p " + "WHERE codigoProducto LIKE :codigoProducto";
+             String jpql = "SELECT p FROM Producto p " + "WHERE codigoProducto  = '" 
+                    + codigoProducto+"' OR descripcion = '" + codigoProducto+"'  OR numeroSerie = '" + codigoProducto+"' ";
             TypedQuery<Producto> query = em.createQuery(jpql, Producto.class);
-            query.setParameter("codigoProducto", codigoProducto);
+            //query.setParameter("codigoProducto", codigoProducto);
+
+            c = query.getSingleResult();
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            return null;
+        }
+        return c;
+    }
+    
+    public Producto buscarProductos(String parametro) throws Exception {
+        Producto c = null;
+        try {
+            String jpql = "SELECT p FROM Producto p " + "WHERE codigoProducto  = '" 
+                    + parametro+"' OR descripcion = '" + parametro+"'  OR numeroSerie = '" + parametro+"' ";
+            
+            TypedQuery<Producto> query = em.createQuery(jpql, Producto.class);
+          //  query.setParameter("codigoProducto", codigoProducto);
 
             c = query.getSingleResult();
 
@@ -53,21 +73,25 @@ public class DaoProducto {
         return c;
     }
 
-    public void actualizarestadoProducto(int idProveedor, int nuevoestado) throws Exception {
+    public void actualizarEstadoProducto(String codigoProducto, int nuevoestado) throws Exception {
 
-        String jpql = "UPDATE Producto p SET p.estado =" + nuevoestado + " WHERE idProducto='" + idProveedor + "'";
+        String jpql = "UPDATE Producto p SET p.estado =" + nuevoestado + " WHERE codigoProducto='" + codigoProducto + "'";
 
         Query query = em.createQuery(jpql);
         query.executeUpdate();
 
     }
+    
 
-    public List<Producto> ListaProveedor() throws Exception {
-        String jpql = "SELECT c FROM Producto c";
+
+    public List<Producto> ListaProducto() throws Exception {
+        String jpql = "SELECT c FROM Producto c WHERE estado='" + 1 + "'";
 
         Query q = em.createQuery(jpql, Producto.class);
 
         return q.getResultList();
     }
+    
+   
 
 }

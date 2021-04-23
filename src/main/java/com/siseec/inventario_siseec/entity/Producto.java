@@ -6,6 +6,8 @@
 package com.siseec.inventario_siseec.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -31,6 +34,10 @@ public class Producto {
     private double precioCompra;
     private double precioVenta;
     private long numeroSerie;
+    private String tipoUnidad;
+    private int estado;
+    private int Stock;
+    private String observacionProducto;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idTipoProducto")
@@ -48,10 +55,9 @@ public class Producto {
     @JoinColumn(name = "idCategoria")
     private Categoria categoriaProducto;
 
-    private String tipoUnidad;
-    private int estado;
-    private int Stock;
-    private String observacionProducto;
+    @OneToMany(mappedBy = "producto", cascade = {CascadeType.ALL})
+    @JsonIgnore
+    private List<Detalle_OrdenCompra> detalleOrden;
 
     public int getIdProducto() {
         return idProducto;
@@ -175,22 +181,20 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" + "idProducto=" + idProducto + 
-                ", codigoProducto=" + codigoProducto + ", "
-                + "descripcion=" + descripcion 
-                + ", fechaIngreso=" + fechaIngreso 
-                + ", precioCompra=" + precioCompra 
-                + ", precioVenta=" 
-                + precioVenta + ", numeroSerie=" + numeroSerie 
-                + ", tipoProducto=" + tipoProducto 
-                + ", marcaProducto=" + marcaProducto 
-                + ", proveedor=" + proveedor + ", categoriaProducto=" 
-                + categoriaProducto + ", tipoUnidad=" + tipoUnidad 
-                + ", estado=" + estado 
-                + ", Stock=" + Stock 
+        return "Producto{" + "idProducto=" + idProducto
+                + ", codigoProducto=" + codigoProducto + ", "
+                + "descripcion=" + descripcion
+                + ", fechaIngreso=" + fechaIngreso
+                + ", precioCompra=" + precioCompra
+                + ", precioVenta="
+                + precioVenta + ", numeroSerie=" + numeroSerie
+                + ", tipoProducto=" + tipoProducto
+                + ", marcaProducto=" + marcaProducto
+                + ", proveedor=" + proveedor + ", categoriaProducto="
+                + categoriaProducto + ", tipoUnidad=" + tipoUnidad
+                + ", estado=" + estado
+                + ", Stock=" + Stock
                 + ", observacionProducto=" + observacionProducto + '}';
     }
 
-    
- 
 }

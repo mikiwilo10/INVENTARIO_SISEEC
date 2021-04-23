@@ -33,6 +33,8 @@ public class RestProducto {
 
     @Inject
     private ONProducto onproducto;
+    
+    Respuesta respuestaProducto ;
 
 //    @GET
 //    @Path("/listado")
@@ -147,66 +149,49 @@ public class RestProducto {
         }
         return resp;
     }
+    
+    
+    @GET
+    @Path("/buscarProducto")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response buscarProducto(@QueryParam("parametro") String parametro) throws Exception {
 
-//   	@GET
-//   	@Path("logins")
-//   	@Produces("application/json")
-//   	public Response loginsocio(@QueryParam("usuario") String usu, @QueryParam("password") String pws) throws Exception {
-//   		SocioEN p = on.buscarPersona(usu, pws);
-//   		if (p == null) {
-//   			return Response.ok(p).header("Access-Control-Allow-Origin", "*").build();
-//   		}
-//   		return Response.ok(p).header("Access-Control-Allow-Origin", "*").build();
-//
-//   	}
-//
-//   	@GET
-//   	@Path("Updtelogin")
-//   	@Produces(MediaType.APPLICATION_JSON)
-//   	@Consumes(MediaType.APPLICATION_JSON)
-//   	public Response actualizarsocio(@QueryParam("email") String email, @QueryParam("clave") String clave)
-//   			throws Exception {
-//   		on.actualizarSocio(email, clave);
-//   		
-//   	
-//   		System.out.println("Kajajistan..." + email + clave);
-//
-//   		return Response.ok("transfiriendo").header("Access-Control-Allow-Origin", "*").build();
-//   	}
-//
-//
-//   	@GET
-//   	@Path("/CuentaSocio")
-//   	@Produces(MediaType.APPLICATION_JSON)
-//   	public Response CuentaSocio(@QueryParam("cedula") String cedula) throws Exception {
-//
-//   		List<CuentaEN> listaCuenta = on.listarCuentaSocio(cedula);
-//
-//   		return Response.ok(listaCuenta).header("Access-Control-Allow-Origin", "*").build();
-//   	}
-//   	
-//   	
-//
-//   	@GET
-//   	@Path("/Credito")
-//   	@Produces(MediaType.APPLICATION_JSON)
-//   	public Response Credito(@QueryParam("cedula") String cedula) throws Exception {
-//
-//   		List<CreditoEN> listaCredito = on.listarCredito(cedula);
-//
-//   		return Response.ok(listaCredito).header("Access-Control-Allow-Origin", "*").build();
-//   	}
-//   	
-//   	
-//   	
-//	@GET
-//   	@Path("/DetalleCredito")
-//   	@Produces(MediaType.APPLICATION_JSON)
-//   	public Response DetalleCredito(@QueryParam("idcuenta") String idcuenta) throws Exception {
-//
-//   		List<DetalleCreditoEN> detalleCredito =on.Amortizacion(idcuenta);
-//
-//   		return Response.ok(detalleCredito).header("Access-Control-Allow-Origin", "*").build();
-//   	}
-// 
+        Producto pro = onproducto.buscarProductos(parametro);
+
+        return Response.ok(pro).header("Access-Control-Allow-Origin", "*").build();
+       // Response.status(0).
+//                return  null;
+    }
+
+    @GET
+    @Path("/listaProductos")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Producto> listaProductos() throws Exception {
+
+        List<Producto> lista = onproducto.ListarProductos();
+
+        //return (List<Categoria>) Response.ok(lista).header("Access-Control-Allow-Origin", "*").build();
+        return lista;
+    }
+    
+    @PUT
+    @Path("/actualizarProducto")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Respuesta actualizarProducto(@QueryParam("codigoProducto") String codigoProducto,@QueryParam("estado") int estado) throws Exception {
+        try {
+            respuestaProducto = new Respuesta();
+            respuestaProducto.setCodigo(1);
+            respuestaProducto.setMensaje("Actualizado Estado Categoria");
+            onproducto.actualizarEstadoProducto(codigoProducto, estado);
+            //return Response.ok(respestaCategoria).header("Access-Control-Allow-Origin", "*").build();
+           
+        } catch (Exception e) {
+            respuestaProducto.setCodigo(2);
+            respuestaProducto.setMensaje("Error Actualizado Estado");
+           // return 
+        }
+         return respuestaProducto;
+    }
+    
 }

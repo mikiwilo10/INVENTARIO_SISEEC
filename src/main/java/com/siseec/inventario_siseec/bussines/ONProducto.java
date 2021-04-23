@@ -61,26 +61,30 @@ public class ONProducto {
             return prod;
         }
     }
-//
-//    public void actualizarCredito(Marco categoria) throws Exception {
-//        em.merge(categoria);
-//    }
-//
-//    public void actualizarestadoCategoia(int idCategoria, int nuevoestado) throws Exception {
-//
-//        String jpql = "UPDATE Marco p SET p.idCategoria = p.estado+" + nuevoestado + " WHERE idCategoria='" + idCategoria + "'";
-//
-//        Query query = em.createQuery(jpql);
-//        query.executeUpdate();
-//
-//    }
-//
-//    public List<Categoria> ListaCategorias() throws Exception {
-//        String jpql = "SELECT c FROM Marco c";
-//
-//        Query q = em.createQuery(jpql, Marco.class);
-//
-//        return q.getResultList();
-//    }
+    
+    
+    public Producto buscarProductos(String parametro) throws Exception {
+       Producto prod=daoproducto.buscarProductos(parametro);
+        if (prod==null) {
+            return null;
+           
+        } else {
+            return prod;
+        }
+    }
+
+    
+    public void actualizarEstadoProducto(String codigoProducto, int nuevoestado) throws Exception {
+
+      daoproducto.actualizarEstadoProducto(codigoProducto, nuevoestado);
+    }
+
+    
+    public List<Producto> ListarProductos() throws Exception {
+    
+       List<Producto> Productos=null;
+       Productos=daoproducto.ListaProducto();
+        return Productos;
+    }
 
 }
