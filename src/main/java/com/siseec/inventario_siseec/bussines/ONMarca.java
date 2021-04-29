@@ -21,10 +21,9 @@ import jdk.nashorn.internal.ir.BreakNode;
  */
 @Stateless
 public class ONMarca {
-
+    
     @Inject
     private DaoMarca daomarca;
-    
     
     public void insertarMarca(Marca marca) throws Exception {
         daomarca.insertarMarca(marca);
@@ -36,12 +35,12 @@ public class ONMarca {
 //           
 //        }
     }
-
+    
     public Marca buscarMarca(String codigoCategoria) throws Exception {
-       Marca marca=daomarca.buscarMarca(codigoCategoria);
-        if (marca==null) {
+        Marca marca = daomarca.buscarMarca(codigoCategoria);
+        if (marca == null) {
             return null;
-           
+            
         } else {
             return marca;
         }
@@ -60,12 +59,20 @@ public class ONMarca {
 //
 //    }
 //
-//    public List<Categoria> ListaCategorias() throws Exception {
-//        String jpql = "SELECT c FROM Marco c";
-//
-//        Query q = em.createQuery(jpql, Marco.class);
-//
-//        return q.getResultList();
-//    }
 
+    public void actualizarestadoMarca(Marca marca) throws Exception {
+        daomarca.actualizarMarca(marca);
+    }
+    
+    public List<Marca> buscarMarcaDescripcion(String codigoMarca) throws Exception {
+        return daomarca.buscarMarcaDescripcion(codigoMarca);
+    }
+
+    public List<Marca> ListarMarcas() throws Exception {
+        
+        List<Marca> Marca = null;
+        Marca = daomarca.ListaMarca();
+        return Marca;
+    }
+    
 }

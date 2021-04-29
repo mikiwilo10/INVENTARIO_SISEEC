@@ -152,7 +152,7 @@ public class RestCategoria {
     }
 
     @PUT
-    @Path("actualizarCategoria")
+    @Path("/actualizarCategoria")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Respuesta actualizarsocio(Categoria cat) throws Exception {

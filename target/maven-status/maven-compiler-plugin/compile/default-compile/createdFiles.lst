@@ -7,10 +7,14 @@ com\siseec\inventario_siseec\service\RestTipoProducto.class
 com\siseec\inventario_siseec\dao\DaoCategoria.class
 com\siseec\inventario_siseec\entity\Bodega.class
 com\siseec\inventario_siseec\service\RestProveedor.class
+com\siseec\inventario_siseec\parametros\ParametroOrden.class
 com\siseec\inventario_siseec\bussines\ONMarca.class
 com\siseec\inventario_siseec\entity\Producto.class
 com\siseec\inventario_siseec\bussines\ONTipoProducto.class
+com\siseec\inventario_siseec\dao\DaoDetalleOrdenCompra.class
 com\siseec\inventario_siseec\dao\DaoProducto.class
+com\siseec\inventario_siseec\parametros\DetalleCompra.class
+com\siseec\inventario_siseec\bussines\ONDetalleOrdenCompra.class
 com\siseec\inventario_siseec\entity\Detalle_OrdenCompra.class
 com\siseec\inventario_siseec\service\RESTAplication.class
 com\siseec\inventario_siseec\bussines\ONProducto.class
@@ -24,3 +28,4 @@ com\siseec\inventario_siseec\entity\Inventario.class
 com\siseec\inventario_siseec\entity\Orden_Compra.class
 com\siseec\inventario_siseec\service\Respuesta.class
 com\siseec\inventario_siseec\dao\DaoMarca.class
+com\siseec\inventario_siseec\service\RestDetalleOrdenCompra.class

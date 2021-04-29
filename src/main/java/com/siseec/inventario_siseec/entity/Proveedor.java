@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -30,7 +31,10 @@ public class Proveedor {
     private String callePrincipal;
     private String calleSecundaria;
     private String telefono;
+    
+    @Size(min = 10,max = 10)
     private String Ruc;
+    
     private String ciudad;
     private String correoElectronico;
     private int estado;

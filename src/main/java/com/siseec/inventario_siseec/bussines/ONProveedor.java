@@ -44,21 +44,17 @@ public class ONProveedor {
 //        em.merge(categoria);
 //    }
 //
-//    public void actualizarestadoCategoia(int idCategoria, int nuevoestado) throws Exception {
+    public void actualizarestadoProveedor(Proveedor proveedor) throws Exception {
+
+       daoproveedor.actualizarProveedor(proveedor);
+
+    }
 //
-//        String jpql = "UPDATE Marco p SET p.idCategoria = p.estado+" + nuevoestado + " WHERE idCategoria='" + idCategoria + "'";
-//
-//        Query query = em.createQuery(jpql);
-//        query.executeUpdate();
-//
-//    }
-//
-//    public List<Categoria> ListaCategorias() throws Exception {
-//        String jpql = "SELECT c FROM Marco c";
-//
-//        Query q = em.createQuery(jpql, Marco.class);
-//
-//        return q.getResultList();
-//    }
+   public List<Proveedor> ListarProveedor() throws Exception {
+    
+       List<Proveedor> Proveedor=null;
+       Proveedor=daoproveedor.ListaProveedor();
+        return Proveedor;
+    }
 
 }

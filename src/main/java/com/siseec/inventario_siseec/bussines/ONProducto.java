@@ -14,6 +14,7 @@ import com.siseec.inventario_siseec.dao.DaoProducto;
 import com.siseec.inventario_siseec.entity.Categoria;
 import com.siseec.inventario_siseec.entity.Marca;
 import com.siseec.inventario_siseec.entity.Producto;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -86,5 +87,53 @@ public class ONProducto {
        Productos=daoproducto.ListaProducto();
         return Productos;
     }
+    
+    
+//    public List<Producto> ListarProductoCatProve() throws Exception {
+//     //  List<Integer> codigosMarca= onmarca.;
+//       
+//       
+//       List<Producto> Productos=null;
+//       Productos=daoproducto.ListaProducto();
+//        return Productos;
+//    }
 
+//    public List<Producto> ListaProductoMarca(int marca) throws Exception {
+//     //  List<Integer> codigosMarca= onmarca.;
+//       
+//       
+//       List<Producto> Productos=null;
+//       Productos=daoproducto.ListaProductoMarca(marca);
+//        return Productos;
+//    }
+    
+    
+    public List<Producto> ListaProductosParametro(int estado, int codigo, String parametro) throws Exception {
+        List<Producto> Productos=new ArrayList<>();
+                //=daoproducto.ListaProductoMarca(estado);
+        
+        if (parametro.equals("")) {
+         
+             Productos=daoproducto.ListaProducto();
+        
+        } else if (parametro.equals("todos")) {
+        
+             Productos=daoproducto.ListaProductoTodos();
+         
+        }else if (parametro.equals("marca")) {
+        
+             Productos=daoproducto.ListaProductoMarca(codigo);
+         
+        } else if (parametro.equals("proveedor")) {
+         
+             Productos=daoproducto.ListaProductoProveedor(codigo);
+        
+        } else if (parametro.equals("categoria")) {
+            
+             Productos=daoproducto.ListaProductoCategoria(codigo);
+        
+        }  
+        return Productos;
+
+    }
 }

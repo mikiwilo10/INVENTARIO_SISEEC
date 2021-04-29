@@ -81,8 +81,6 @@ public class DaoProducto {
         query.executeUpdate();
 
     }
-    
-
 
     public List<Producto> ListaProducto() throws Exception {
         String jpql = "SELECT c FROM Producto c WHERE estado='" + 1 + "'";
@@ -91,6 +89,40 @@ public class DaoProducto {
 
         return q.getResultList();
     }
+    
+    public List<Producto> ListaProductoTodos() throws Exception {
+        String jpql = "SELECT c FROM Producto c  ";
+
+        Query q = em.createQuery(jpql, Producto.class);
+
+        return q.getResultList();
+    }
+    
+     public List<Producto> ListaProductoMarca(int marca)throws Exception{
+      
+        String jpql = "SELECT e FROM Producto e JOIN e.marcaProducto p where  p.idMarca  = '" + marca+"' ";
+    	   
+        Query q = em.createQuery(jpql,Producto.class);
+        return q.getResultList();
+    }
+   
+     public List<Producto> ListaProductoCategoria(int Categoria) throws Exception {
+         String jpql = "SELECT e FROM Producto e JOIN e.categoriaProducto p where  p.idCategoria  = '" + Categoria+"' ";
+    	
+        Query q = em.createQuery(jpql, Producto.class);
+
+        return q.getResultList();
+    }
+    
+     public List<Producto> ListaProductoProveedor(int Proveedor)throws Exception{
+    
+        String jpql = "SELECT e FROM Producto e JOIN e.proveedor p where  p.idProveedor  = '" + Proveedor+"' ";
+    	   
+        Query q = em.createQuery(jpql,Producto.class);
+        return q.getResultList();
+    }
+    
+    
     
    
 

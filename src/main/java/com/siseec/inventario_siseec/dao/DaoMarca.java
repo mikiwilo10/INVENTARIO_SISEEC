@@ -40,6 +40,8 @@ public class DaoMarca {
         Marca c = null;
         try {
             String jpql = "SELECT p FROM Marca p " + "WHERE codigoMarca LIKE :codigoMarca";
+            //   String jpql = "SELECT p FROM Categoria p " + "WHERE codigoCategoria = '" + parametro+"' OR nombre = '" + parametro+"' ";
+
             TypedQuery<Marca> query = em.createQuery(jpql, Marca.class);
             query.setParameter("codigoMarca", codigoMarca);
 
@@ -52,9 +54,25 @@ public class DaoMarca {
         return c;
     }
 
-    public void actualizarestadoMarca(int idCategoria, int nuevoestado) throws Exception {
+    public List<Marca> buscarMarcaDescripcion(String codigoMarca) throws Exception {
+        List<Marca> lista = null;
+        Query q;
+        try {
+            // String jpql = "SELECT p FROM Marca p " + "WHERE codigoMarca LIKE :codigoMarca";
+            String jpql = "SELECT p FROM Marca p " + "WHERE codigoMarca = '" + codigoMarca + "' OR nombre LIKE '" + codigoMarca + "'  ";
 
-        String jpql = "UPDATE Marca p SET p.idCategoria = p.estado+" + nuevoestado + " WHERE idCategoria='" + idCategoria + "'";
+            q = em.createQuery(jpql, Marca.class);
+            lista = q.getResultList();
+        } catch (Exception e) {
+            // TODO: handle exception
+            return null;
+        }
+        return lista;
+    }
+
+    public void actualizarestadoMarca(Marca marca) throws Exception {
+
+        String jpql = "UPDATE Marca p SET p.estado =" + marca.getEstado() + " WHERE codigoMarca='" + marca.getCodigoMarca() + "'";
 
         Query query = em.createQuery(jpql);
         query.executeUpdate();
@@ -62,7 +80,7 @@ public class DaoMarca {
     }
 
     public List<Marca> ListaMarca() throws Exception {
-        String jpql = "SELECT c FROM Marca c";
+        String jpql = "SELECT c FROM Marca c WHERE estado='" + 1 + "'";
 
         Query q = em.createQuery(jpql, Marca.class);
 

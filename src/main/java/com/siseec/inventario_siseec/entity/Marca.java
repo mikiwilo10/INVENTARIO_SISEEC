@@ -27,6 +27,7 @@ public class Marca {
     private int idMarca;
     
     private String codigoMarca;
+    private String nombre;
     private String descripcion;
     private String estado;
     
@@ -41,7 +42,7 @@ public class Marca {
     public void setIdMarca(int idMarca) {
         this.idMarca = idMarca;
     }
-
+    
     public String getCodigoMarca() {
         return codigoMarca;
     }
@@ -57,6 +58,16 @@ public class Marca {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    
 
     public String getEstado() {
         return estado;

@@ -35,102 +35,21 @@ public class RestProveedor {
 
     @Inject
     private ONProveedor onproveedor;
+    
+    Respuesta respuestaProducto;
 
-//    @GET
-//    @Path("/listado")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String saludar(@QueryParam("x") String nombre) {
-//        return "Hola: " + nombre;
-//    }
-//    
-//    
-//    //otra forma de llama rlos web servicse
-//    
-//    @GET
-//    @Path("/listado:/{name}/{usr} ")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String saludar2(@PathParam("x") String nombre,@PathParam("usr") String usuario) {
-//        return "Hola " + nombre;
-//    }
-//
-//    
-//    
-//    @PUT
-//    @Path("/deposito/{idCuenta}/{cantidad}")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String depositarREST(@PathParam("idCuenta") String idCuenta, @PathParam("cantidad") double cantidad) {
-//        on.depositar(idCuenta,cantidad);
-//        System.out.println("depositando...");
-//        return "depositado";
-//    }
-//    
-//    
-//     @PUT
-//    @Path("/retiro/{idCuenta}/{cantidad}")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String retirarREST(@PathParam("idCuenta") String idCuenta, @PathParam("cantidad") double cantidad) {
-//        on.retirar(idCuenta,cantidad);
-//        System.out.println("retirando...");
-//        return "retirado";
-//    }
-//    
-//    
-//      
-//     @PUT
-//    @Path("/transferir/{idCuentaOrigen}/{idCuentaDestino}/{cantidad}")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String transferirREST(@PathParam("idCuentaOrigen") String idCuentaOrigen,@PathParam("idCuentaDestino") 
-//            String idCuentaDestino, @PathParam("cantidad") double cantidad) {
-//        on.transaccion(idCuentaOrigen, idCuentaDestino, cantidad);
-//        System.out.println("transfiriendo...");
-//        return "transferencia exitosa";
-//    }
-//    
-//    
-//    
-//    
-//    
-//    
-//
-////
-////    public String retirarREST(String idCuenta, double cantidad) {
-////
-////        on.retirar(idCuenta, cantidad);
-////        System.out.println("retirando...");
-////        return "retirado";
-////    }
-//    
-//    
-//    @GET
-//    @Path("/socios")
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<UsuarioAdministrativo> getUsuarios() {
-//
-//        try {
-//            List<UsuarioAdministrativo> lista = usuarioAdminON.listarUAdmi();
-//            
-//
-//            return lista;
-//            
-//        } catch (Exception ex) {
-//            System.out.println("Error ON getUsuarios");
-//        }
-//        return null;
-//    }
-//    
     @POST
     @Path("/ingresarProveedor")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Respuesta transferirREST(Proveedor proveedor) throws Exception {
+    public Respuesta ingresarProveedor(Proveedor proveedor) throws Exception {
         Proveedor cat = null;
         Respuesta resp = new Respuesta();
         cat = onproveedor.buscarProveedor(proveedor.getRuc());
 
         try {
             if (cat == null) {
-              onproveedor.insertarCategoria(proveedor);
+                onproveedor.insertarCategoria(proveedor);
 
                 resp.setCodigo(1);
                 resp.setMensaje("Insercion Existosa Proveedor");
@@ -150,65 +69,49 @@ public class RestProveedor {
         return resp;
     }
 
-//   	@GET
-//   	@Path("logins")
-//   	@Produces("application/json")
-//   	public Response loginsocio(@QueryParam("usuario") String usu, @QueryParam("password") String pws) throws Exception {
-//   		SocioEN p = on.buscarPersona(usu, pws);
-//   		if (p == null) {
-//   			return Response.ok(p).header("Access-Control-Allow-Origin", "*").build();
-//   		}
-//   		return Response.ok(p).header("Access-Control-Allow-Origin", "*").build();
-//
-//   	}
-//
-//   	@GET
-//   	@Path("Updtelogin")
-//   	@Produces(MediaType.APPLICATION_JSON)
-//   	@Consumes(MediaType.APPLICATION_JSON)
-//   	public Response actualizarsocio(@QueryParam("email") String email, @QueryParam("clave") String clave)
-//   			throws Exception {
-//   		on.actualizarSocio(email, clave);
-//   		
-//   	
-//   		System.out.println("Kajajistan..." + email + clave);
-//
-//   		return Response.ok("transfiriendo").header("Access-Control-Allow-Origin", "*").build();
-//   	}
-//
-//
-//   	@GET
-//   	@Path("/CuentaSocio")
-//   	@Produces(MediaType.APPLICATION_JSON)
-//   	public Response CuentaSocio(@QueryParam("cedula") String cedula) throws Exception {
-//
-//   		List<CuentaEN> listaCuenta = on.listarCuentaSocio(cedula);
-//
-//   		return Response.ok(listaCuenta).header("Access-Control-Allow-Origin", "*").build();
-//   	}
-//   	
-//   	
-//
-//   	@GET
-//   	@Path("/Credito")
-//   	@Produces(MediaType.APPLICATION_JSON)
-//   	public Response Credito(@QueryParam("cedula") String cedula) throws Exception {
-//
-//   		List<CreditoEN> listaCredito = on.listarCredito(cedula);
-//
-//   		return Response.ok(listaCredito).header("Access-Control-Allow-Origin", "*").build();
-//   	}
-//   	
-//   	
-//   	
-//	@GET
-//   	@Path("/DetalleCredito")
-//   	@Produces(MediaType.APPLICATION_JSON)
-//   	public Response DetalleCredito(@QueryParam("idcuenta") String idcuenta) throws Exception {
-//
-//   		List<DetalleCreditoEN> detalleCredito =on.Amortizacion(idcuenta);
-//
-//   		return Response.ok(detalleCredito).header("Access-Control-Allow-Origin", "*").build();
-//   	}
-// 
+    @GET
+    @Path("/buscarProveedor")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response buscarProducto(@QueryParam("parametro") String parametro) throws Exception {
+
+        Proveedor pro = onproveedor.buscarProveedor(parametro);
+
+        return Response.ok(pro).header("Access-Control-Allow-Origin", "*").build();
+        // Response.status(0).
+//                return  null;
+    }
+
+    @GET
+    @Path("/listaProveedor")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Proveedor> listarProveedor() throws Exception {
+
+        List<Proveedor> lista = onproveedor.ListarProveedor();
+
+        //return (List<Categoria>) Response.ok(lista).header("Access-Control-Allow-Origin", "*").build();
+        return lista;
+    }
+
+   
+
+    @PUT
+    @Path("/actualizarProveedor")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Respuesta actualizarProveedor(Proveedor proveedor) throws Exception {
+        try {
+            respuestaProducto = new Respuesta();
+            respuestaProducto.setCodigo(1);
+            respuestaProducto.setMensaje("Actualizado Estado Categoria");
+            onproveedor.actualizarestadoProveedor(proveedor);
+            //return Response.ok(respestaCategoria).header("Access-Control-Allow-Origin", "*").build();
+
+        } catch (Exception e) {
+            respuestaProducto.setCodigo(2);
+            respuestaProducto.setMensaje("Error Actualizado Estado");
+            // return 
+        }
+        return respuestaProducto;
+    }
+
 }

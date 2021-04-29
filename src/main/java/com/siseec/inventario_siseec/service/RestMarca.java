@@ -9,7 +9,6 @@ package com.siseec.inventario_siseec.service;
 import com.siseec.inventario_siseec.bussines.ONMarca;
 import com.siseec.inventario_siseec.entity.Marca;
 
-
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,6 +35,7 @@ public class RestMarca {
     @Inject
     private ONMarca onmarca;
 
+    Respuesta respuestaProducto;
 //    @GET
 //    @Path("/listado")
 //    @Produces(MediaType.APPLICATION_JSON)
@@ -119,6 +119,7 @@ public class RestMarca {
 //        return null;
 //    }
 //    
+
     @POST
     @Path("/ingresarMarca")
     @Produces(MediaType.APPLICATION_JSON)
@@ -150,65 +151,46 @@ public class RestMarca {
         return resp;
     }
 
-//   	@GET
-//   	@Path("logins")
-//   	@Produces("application/json")
-//   	public Response loginsocio(@QueryParam("usuario") String usu, @QueryParam("password") String pws) throws Exception {
-//   		SocioEN p = on.buscarPersona(usu, pws);
-//   		if (p == null) {
-//   			return Response.ok(p).header("Access-Control-Allow-Origin", "*").build();
-//   		}
-//   		return Response.ok(p).header("Access-Control-Allow-Origin", "*").build();
-//
-//   	}
-//
-//   	@GET
-//   	@Path("Updtelogin")
-//   	@Produces(MediaType.APPLICATION_JSON)
-//   	@Consumes(MediaType.APPLICATION_JSON)
-//   	public Response actualizarsocio(@QueryParam("email") String email, @QueryParam("clave") String clave)
-//   			throws Exception {
-//   		on.actualizarSocio(email, clave);
-//   		
-//   	
-//   		System.out.println("Kajajistan..." + email + clave);
-//
-//   		return Response.ok("transfiriendo").header("Access-Control-Allow-Origin", "*").build();
-//   	}
-//
-//
-//   	@GET
-//   	@Path("/CuentaSocio")
-//   	@Produces(MediaType.APPLICATION_JSON)
-//   	public Response CuentaSocio(@QueryParam("cedula") String cedula) throws Exception {
-//
-//   		List<CuentaEN> listaCuenta = on.listarCuentaSocio(cedula);
-//
-//   		return Response.ok(listaCuenta).header("Access-Control-Allow-Origin", "*").build();
-//   	}
-//   	
-//   	
-//
-//   	@GET
-//   	@Path("/Credito")
-//   	@Produces(MediaType.APPLICATION_JSON)
-//   	public Response Credito(@QueryParam("cedula") String cedula) throws Exception {
-//
-//   		List<CreditoEN> listaCredito = on.listarCredito(cedula);
-//
-//   		return Response.ok(listaCredito).header("Access-Control-Allow-Origin", "*").build();
-//   	}
-//   	
-//   	
-//   	
-//	@GET
-//   	@Path("/DetalleCredito")
-//   	@Produces(MediaType.APPLICATION_JSON)
-//   	public Response DetalleCredito(@QueryParam("idcuenta") String idcuenta) throws Exception {
-//
-//   		List<DetalleCreditoEN> detalleCredito =on.Amortizacion(idcuenta);
-//
-//   		return Response.ok(detalleCredito).header("Access-Control-Allow-Origin", "*").build();
-//   	}
-// 
+    @GET
+    @Path("/listarMarca")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Marca> listaMarca() throws Exception {
+
+        List<Marca> lista = onmarca.ListarMarcas();
+
+        //return (List<Categoria>) Response.ok(lista).header("Access-Control-Allow-Origin", "*").build();
+        return lista;
+    }
+
+    @GET
+    @Path("/buscarMarcaDescripcion")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Marca> buscarMarcaDescripcion(@QueryParam("parametro") String parametro) throws Exception {
+
+        List<Marca> lista = onmarca.buscarMarcaDescripcion(parametro);
+
+        //return (List<Categoria>) Response.ok(lista).header("Access-Control-Allow-Origin", "*").build();
+        return lista;
+    }
+
+    @PUT
+    @Path("/actualizarMarca")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Respuesta actualizarMarca(Marca marca) throws Exception {
+        try {
+            respuestaProducto = new Respuesta();
+            respuestaProducto.setCodigo(1);
+            respuestaProducto.setMensaje("Actualizado Estado Categoria");
+           onmarca.actualizarestadoMarca(marca);
+            //return Response.ok(respestaCategoria).header("Access-Control-Allow-Origin", "*").build();
+
+        } catch (Exception e) {
+            respuestaProducto.setCodigo(2);
+            respuestaProducto.setMensaje("Error Actualizado Estado");
+            // return 
+        }
+        return respuestaProducto;
+    }
+
 }

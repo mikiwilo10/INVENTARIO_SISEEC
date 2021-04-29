@@ -173,6 +173,18 @@ public class RestProducto {
         //return (List<Categoria>) Response.ok(lista).header("Access-Control-Allow-Origin", "*").build();
         return lista;
     }
+   
+     @GET
+    @Path("/ListaProductoMarca")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Producto> ListaProductoMarca(@QueryParam("estado") int estado,@QueryParam("codigo") int codigo,
+            @QueryParam("parametro") String parametro) throws Exception {
+ 
+        List<Producto> lista = onproducto.ListaProductosParametro(estado, codigo, parametro);
+
+        //return (List<Categoria>) Response.ok(lista).header("Access-Control-Allow-Origin", "*").build();
+        return lista;
+    }
     
     @PUT
     @Path("/actualizarProducto")
