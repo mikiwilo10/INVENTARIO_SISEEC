@@ -24,10 +24,10 @@ public class InventarioActivos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idInventarioActivos;
     
-    private String codidoInvActivos;
+    private String codigoInvActivos;
     
     private int stock;
-    private int disponible;
+    private int cantidadDisponible;
     private String observacion;
     private String unidad;
     
@@ -43,12 +43,12 @@ public class InventarioActivos {
         this.idInventarioActivos = idInventarioActivos;
     }
 
-    public String getCodidoInvActivos() {
-        return codidoInvActivos;
+    public String getCodigoInvActivos() {
+        return codigoInvActivos;
     }
 
-    public void setCodidoInvActivos(String codidoInvActivos) {
-        this.codidoInvActivos = codidoInvActivos;
+    public void setCodigoInvActivos(String codigoInvActivos) {
+        this.codigoInvActivos = codigoInvActivos;
     }
 
     public int getStock() {
@@ -59,12 +59,12 @@ public class InventarioActivos {
         this.stock = stock;
     }
 
-    public int getDisponible() {
-        return disponible;
+    public int getCantidadDisponible() {
+        return cantidadDisponible;
     }
 
-    public void setDisponible(int disponible) {
-        this.disponible = disponible;
+    public void setCantidadDisponible(int cantidadDisponible) {
+        this.cantidadDisponible = cantidadDisponible;
     }
 
     public String getObservacion() {
@@ -90,7 +90,6 @@ public class InventarioActivos {
     public void setActivos(ActivosEmpresa activos) {
         this.activos = activos;
     }
-    
-    
-    
+
+   
 }

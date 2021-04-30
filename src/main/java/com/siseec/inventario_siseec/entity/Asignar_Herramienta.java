@@ -5,20 +5,26 @@
  */
 package com.siseec.inventario_siseec.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author Javier
  */
+//@Entity
 public class Asignar_Herramienta {
- 
-    private int idDesignar;
-    private String codigoDesignar;
+// 
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private int idDesignar;
+//    
+//    private String codigoDesignar;
+//    
+//    
     
-    private String bodeguero;
-    
-    private String fechaDesignar;
-    private String fechaRetorno;
-    private String observacion;
     
     
 }

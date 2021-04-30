@@ -165,6 +165,19 @@ public class RestActivosEmpresa {
        // Response.status(0).
 //                return  null;
     }
+    
+    
+    @GET
+    @Path("/buscarListaActivo")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response buscarListaActivo(@QueryParam("parametro") String parametro) throws Exception {
+
+       List<ActivosEmpresa> pro = onactivos.buscarActivosLista(parametro);
+
+        return Response.ok(pro).header("Access-Control-Allow-Origin", "*").build();
+       // Response.status(0).
+//                return  null;
+    }
 
     @GET
     @Path("/listaActivos")

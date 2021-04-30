@@ -31,10 +31,15 @@ public class ActivosEmpresa {
     private String marca;
     private String modelo;
     private String numeroSerie;
+    private double valor;
     
     @OneToMany(mappedBy = "activos", cascade = {CascadeType.ALL})
     @JsonIgnore
     private List<InventarioActivos> inventarioActivos;
+    
+    @OneToMany(mappedBy = "asignacionactivos",cascade = {CascadeType.ALL})
+    @JsonIgnore
+    private List<Detalle_AsignarHerramienta> asignacionActivos;
 
     public int getIdActivos() {
         return idActivos;
@@ -99,6 +104,24 @@ public class ActivosEmpresa {
     public void setInventarioActivos(List<InventarioActivos> inventarioActivos) {
         this.inventarioActivos = inventarioActivos;
     }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    public List<Detalle_AsignarHerramienta> getAsignacionActivos() {
+        return asignacionActivos;
+    }
+
+    public void setAsignacionActivos(List<Detalle_AsignarHerramienta> asignacionActivos) {
+        this.asignacionActivos = asignacionActivos;
+    }
+    
+    
     
     
 }

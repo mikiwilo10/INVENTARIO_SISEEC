@@ -62,6 +62,12 @@ public class ONActivosEmpresa {
 //      daoproducto.actualizarEstadoProducto(codigoProducto, nuevoestado);
 //    }
 
+    public List<ActivosEmpresa> buscarActivosLista(String parametro) throws Exception {
+    
+       List<ActivosEmpresa> ActivosEmpresa=null;
+       ActivosEmpresa=daoactivos.buscarActivosLista(parametro);
+        return ActivosEmpresa;
+    }
     
     public List<ActivosEmpresa> ListarActivosEmpresa() throws Exception {
     

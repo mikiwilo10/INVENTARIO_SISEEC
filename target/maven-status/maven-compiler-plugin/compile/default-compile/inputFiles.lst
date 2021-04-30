@@ -2,12 +2,16 @@ C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\s
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\dao\DaoTipo_Producto.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\service\RestMarca.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\entity\Producto.java
+C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\service\RestInventarioActivos.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\parametros\DetalleCompra.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\entity\Bodega.java
+C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\bussines\ONAsignacionActivos.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\service\RestProducto.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\entity\Detalle_OrdenCompra.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\entity\Orden_Compra.java
+C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\dao\DaoAsignacionActivos.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\bussines\ONProducto.java
+C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\bussines\ONInventarioActivos.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\dao\DaoProducto.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\entity\ActivosEmpresa.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\dao\DaoCategoria.java
@@ -23,6 +27,7 @@ C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\s
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\entity\InventarioActivos.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\dao\DaoMarca.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\entity\Inventario.java
+C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\dao\DaoInventarioActivos.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\bussines\ONProveedor.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\service\RestActivosEmpresa.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\service\RestProveedor.java
@@ -33,6 +38,7 @@ C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\s
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\bussines\ONMarca.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\dao\DaoActivosEmpresa.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\entity\Categoria.java
+C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\service\RestAsignacionActivos.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\bussines\ONCategoria.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\entity\Proveedor.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\service\RESTAplication.java
