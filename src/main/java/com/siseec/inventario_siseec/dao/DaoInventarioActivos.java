@@ -37,7 +37,6 @@ public class DaoInventarioActivos {
 //    public void actualizarInventarioActivos(InventarioActivos InventarioActivos) throws Exception {
 //        em.merge(InventarioActivos);
 //    }
-
     public InventarioActivos buscarActivosInsertar(String codigoActivos) throws Exception {
         InventarioActivos c = null;
         try {
@@ -73,12 +72,26 @@ public class DaoInventarioActivos {
         }
         return c;
     }
-    
-    
-     public List<Producto> buscarActivoCantidad(int Categoria) throws Exception {
+
+    public InventarioActivos buscar_Inventario_Activo(int parametro) throws Exception {
+        InventarioActivos c = null;
+        try {
+
+            String jpql = "SELECT e FROM InventarioActivos e JOIN e.activos p where p.idActivos=e.activos and p.idActivos  = " + parametro + " ";
+            TypedQuery<InventarioActivos> query = em.createQuery(jpql, InventarioActivos.class);
+
+            c = query.getSingleResult();
+
+        } catch (Exception e) {
+            return null;
+        }
+        return c;
+    }
+
+    public List<Producto> buscarActivoCantidad(int Categoria) throws Exception {
         // String jpql = "SELECT e FROM Producto e JOIN e.categoriaProducto p where  p.idCategoria  = '" + Categoria+"' ";
-         String jpql = "SELECT e FROM InventarioActivos e JOIN e.idActivos p where  p.idCategoria  = '" + Categoria+"' ";
-    	//String jpql = "SELECT p FROM ActivosEmpresa p WHERE codigoActivos LIKE :parametro OR nombre LIKE :parametro OR numeroSerie LIKE :parametro";
+        String jpql = "SELECT e FROM InventarioActivos e JOIN e.idActivos p where  p.idCategoria  = '" + Categoria + "' ";
+        //String jpql = "SELECT p FROM ActivosEmpresa p WHERE codigoActivos LIKE :parametro OR nombre LIKE :parametro OR numeroSerie LIKE :parametro";
         Query q = em.createQuery(jpql, Producto.class);
 
         return q.getResultList();
@@ -92,7 +105,7 @@ public class DaoInventarioActivos {
         query.executeUpdate();
 
     }
-    
+
 //    public void actualizarStockctivos(String codigoActivos, int stock) throws Exception {
 //
 //        String jpql = "UPDATE InventarioActivos p SET p.stock = p.stock+" + stock + ", p.cantidadDisponible=p.cantidadDisponible+ " + stock + " WHERE p.codigoInvActivos='" + codigoActivos + "'";
@@ -101,11 +114,10 @@ public class DaoInventarioActivos {
 //        query.executeUpdate();
 //
 //    }
-    
-     public void actualizarActivosDisponible(int codigoActivos, int stock) throws Exception {
+    public void actualizarActivosDisponible(int codigoActivos, int stock) throws Exception {
 
         String jpql = "UPDATE InventarioActivos p SET p.cantidadDisponible = p.cantidadDisponible-" + stock + " WHERE p.activos='" + codigoActivos + "'";
-                
+
         Query query = em.createQuery(jpql);
         query.executeUpdate();
 
@@ -119,7 +131,6 @@ public class DaoInventarioActivos {
 //
 //        return q.getResultList();
 //    }
-
     public List<InventarioActivos> ListaInventario() throws Exception {
         String jpql = "SELECT c FROM InventarioActivos c  ";
 

@@ -93,7 +93,7 @@ public class RestAsignacionActivos {
 ////                return  null;
 //    }
     @GET
-    @Path("/listaInventario")
+    @Path("/listaHerramienta")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Detalle_AsignarHerramienta> listaActivos() throws Exception {
 
@@ -103,25 +103,26 @@ public class RestAsignacionActivos {
         return lista;
     }
 
-//    @PUT
-//    @Path("/actualizarInventario")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    public Respuesta actualizarProducto(@QueryParam("codigoActivos") String codigoActivos,@QueryParam("stock") int stock) throws Exception {
-//        try {
-//           
-//            respuestaProducto = new Respuesta();
-//            respuestaProducto.setCodigo(1);
-//            respuestaProducto.setMensaje("Actualizado Estado Inventario");
-//            onactivos.actualizarEstadoInventarioActivos(codigoActivos, stock);
-//            //return Response.ok(respestaCategoria).header("Access-Control-Allow-Origin", "*").build();
-//           
-//        } catch (Exception e) {
-//            respuestaProducto.setCodigo(2);
-//            respuestaProducto.setMensaje("Error Actualizado Estado");
-//           // return 
-//        }
-//         return respuestaProducto;
-//    }
-//      
+    @PUT
+    @Path("/actualizarHerramienta")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Respuesta actualizarProducto(@QueryParam("codigoActivos") String codigoActivos,@QueryParam("nuevoestado") String nuevoestado,
+            @QueryParam("asignacionactivos") int asignacionactivos) throws Exception {
+        try {
+           
+            resp = new Respuesta();
+            resp.setCodigo(1);
+            resp.setMensaje("Actualizado Estado Inventario");
+           onactivos.actualizarEstadoInventarioActivos(codigoActivos, nuevoestado, asignacionactivos);
+            //return Response.ok(respestaCategoria).header("Access-Control-Allow-Origin", "*").build();
+           
+        } catch (Exception e) {
+            resp.setCodigo(2);
+            resp.setMensaje("Error Actualizado Estado");
+           // return 
+        }
+         return resp;
+    }
+      
 }

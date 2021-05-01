@@ -55,6 +55,16 @@ public class ONInventarioActivos {
         daoactivos.actualizarActivosDisponible(codigoActivos, stock);
 
     }
+     public InventarioActivos buscar_Inventario_Activo(int parametro) throws Exception {
+     
+     InventarioActivos prod = daoactivos.buscar_Inventario_Activo(parametro);
+        if (prod == null) {
+            return null;
+
+        } else {
+            return prod;
+        }
+     }
 //    public List<InventarioActivos> ListaInventarioActivos(int codigoActivos) throws Exception {
 //        List<InventarioActivos> ActivosEmpresa = null;
 //        ActivosEmpresa = daoactivos.ListaInventarioActivos(codigoActivos);

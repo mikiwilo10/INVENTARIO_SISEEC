@@ -6,12 +6,9 @@
 package com.siseec.inventario_siseec.bussines;
 
 import com.siseec.inventario_siseec.dao.DaoAsignacionActivos;
-import com.siseec.inventario_siseec.dao.DaoInventarioActivos;
 import com.siseec.inventario_siseec.entity.Detalle_AsignarHerramienta;
 import com.siseec.inventario_siseec.entity.InventarioActivos;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -57,18 +54,19 @@ public class ONAsignacionActivos {
      */
     public String insertarHerramientas(List<Detalle_AsignarHerramienta> herramientas) throws Exception {
         String respuesta = "";
-       // InventarioActivos inventarios = null;
+        InventarioActivos inventarios;
         boolean estado;
 
         for (Detalle_AsignarHerramienta activo : herramientas) {
 
             estado = verificarCantidad(activo.getAsignacionactivos().getIdActivos(), activo.getCantidad());
-
+            inventarios = InventarioActivo(activo.getAsignacionactivos().getIdActivos());
             if (estado == false) {
                 System.out.println("no existe el activo");
-                respuesta = "NDA";
+               return respuesta = "NDA";
             } else {
                 respuesta = "INGRESO";
+                activo.setInventario(inventarios);
                 daoactivos.insertarHerramientas(activo);
                 oninventario.actualizarActivosDisponible(activo.getAsignacionactivos().getIdActivos(), activo.getCantidad());
             }
@@ -94,7 +92,29 @@ public class ONAsignacionActivos {
 
         return estado;
     }
+    
+    public InventarioActivos InventarioActivo(int idActivo) throws Exception  {
+        InventarioActivos inventarios =  oninventario.buscar_Inventario_Activo(idActivo);
+        try {
+           
+            if (inventarios==null) {
+               return null;
+            } else {
+                return inventarios;
+            }
+        } catch (Exception ex) {
+           // Logger.getLogger(ONAsignacionActivos.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
 
+       
+    }
+    
+
+     public void actualizarEstadoInventarioActivos(String codigoActivos, String nuevoestado,int asignacionactivos) throws Exception {
+        daoactivos.actualizarEstadoInventarioActivos(codigoActivos, nuevoestado, asignacionactivos);
+     }
+    
     public List<Detalle_AsignarHerramienta> ListaAsignacion() throws Exception {
 
         List<Detalle_AsignarHerramienta> lista = null;

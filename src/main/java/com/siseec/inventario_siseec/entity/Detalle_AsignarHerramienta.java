@@ -5,6 +5,9 @@
  */
 package com.siseec.inventario_siseec.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.PositiveOrZero;
 
 /**
@@ -42,6 +46,12 @@ public class Detalle_AsignarHerramienta {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idActivos")
     private ActivosEmpresa asignacionactivos;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idInventarioActivos")
+    private InventarioActivos inventario;
+    
+    
 
     public int getIdDetalleDesignar() {
         return idDetalleDesignar;
@@ -122,6 +132,16 @@ public class Detalle_AsignarHerramienta {
     public void setAsignacionactivos(ActivosEmpresa asignacionactivos) {
         this.asignacionactivos = asignacionactivos;
     }
+
+    public InventarioActivos getInventario() {
+        return inventario;
+    }
+
+    public void setInventario(InventarioActivos inventario) {
+        this.inventario = inventario;
+    }
+
+  
 
     
     

@@ -88,14 +88,16 @@ public class DaoAsignacionActivos {
 //        return c;
 //    }
 //
-//    public void actualizarEstadoInventarioActivos(String codigoActivos, int stock) throws Exception {
-//
-//        String jpql = "UPDATE InventarioActivos p SET p.stock = p.stock+" + stock + ", p.cantidadDisponible=p.cantidadDisponible+ " + stock + " WHERE p.codigoInvActivos='" + codigoActivos + "'";
-//
-//        Query query = em.createQuery(jpql);
-//        query.executeUpdate();
-//
-//    }
+    public void actualizarEstadoInventarioActivos(String codigoActivos, String nuevoestado,int idDetalleDesignar) throws Exception {
+
+        String jpql = "UPDATE Detalle_AsignarHerramienta p SET p.estado = '" + nuevoestado 
+                + "' WHERE p.idDetalleDesignar=" + idDetalleDesignar 
+                + " AND p.codigoDetalleDesignar='" + codigoActivos + "'  ";
+
+        Query query = em.createQuery(jpql);
+        query.executeUpdate();
+
+    }
 //    public List<InventarioActivos> ListaInventarioActivos(int codigoActivos) throws Exception {
 //       // String jspql = "SELECT c FROM InventarioActivos c  ";
 //        String jpql = "SELECT p FROM InventarioActivos p " + "WHERE idActivos  = '"

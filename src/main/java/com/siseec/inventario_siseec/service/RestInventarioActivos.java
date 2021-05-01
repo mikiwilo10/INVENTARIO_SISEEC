@@ -85,6 +85,18 @@ public class RestInventarioActivos {
        // Response.status(0).
 //                return  null;
     }
+    
+    @GET
+    @Path("/buscarInventarioActivo")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response buscarInventarioActivo(@QueryParam("parametro") int parametro) throws Exception {
+
+        InventarioActivos pro = onactivos.buscar_Inventario_Activo(parametro);
+
+        return Response.ok(pro).header("Access-Control-Allow-Origin", "*").build();
+       // Response.status(0).
+//                return  null;
+    }
 
     @GET
     @Path("/listaInventario")

@@ -5,6 +5,9 @@
  */
 package com.siseec.inventario_siseec.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -35,6 +39,12 @@ public class InventarioActivos {
     @JoinColumn(name = "idActivos")
     private ActivosEmpresa activos;
 
+    @OneToMany(mappedBy = "inventario", cascade = {CascadeType.ALL})
+    @JsonIgnore
+    private List<Detalle_AsignarHerramienta> detalleherramientas;
+    
+    
+    
     public int getIdInventarioActivos() {
         return idInventarioActivos;
     }

@@ -29,6 +29,7 @@ C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\s
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\entity\Inventario.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\dao\DaoInventarioActivos.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\bussines\ONProveedor.java
+C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\entity\HistoricoAsignarActivo.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\service\RestActivosEmpresa.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\service\RestProveedor.java
 C:\Users\Javier\Documents\NetBeansProjects\INVENTARIO_SISEEC\src\main\java\com\siseec\inventario_siseec\entity\Detalle_AsignarHerramienta.java
