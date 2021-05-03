@@ -58,7 +58,7 @@ public class ONAsignacionActivos {
         boolean estado;
 
         for (Detalle_AsignarHerramienta activo : herramientas) {
-
+            
             estado = verificarCantidad(activo.getAsignacionactivos().getIdActivos(), activo.getCantidad());
             inventarios = InventarioActivo(activo.getAsignacionactivos().getIdActivos());
             if (estado == false) {
@@ -76,7 +76,7 @@ public class ONAsignacionActivos {
     }
 
     public boolean verificarCantidad(int idActivo, int cantidad)  {
-        boolean estado = false;
+        boolean estado ;
         InventarioActivos inventarios;
         try {
             inventarios = oninventario.buscarInvenatrioActivos(idActivo);
@@ -87,7 +87,8 @@ public class ONAsignacionActivos {
             }
         } catch (Exception ex) {
            // Logger.getLogger(ONAsignacionActivos.class.getName()).log(Level.SEVERE, null, ex);
-            estado = false;
+            //estado = false;
+            return false;
         }
 
         return estado;

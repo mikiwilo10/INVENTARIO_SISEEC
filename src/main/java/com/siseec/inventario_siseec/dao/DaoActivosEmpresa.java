@@ -27,14 +27,18 @@ public class DaoActivosEmpresa {
 
     public void insertarActivosEmpresa(ActivosEmpresa activosEmpresa) throws Exception {
         em.persist(activosEmpresa);
+        em.close();
     }
 
     public ActivosEmpresa buscarActivosID(int idActivos) throws Exception {
-        return em.find(ActivosEmpresa.class, idActivos);
+        ActivosEmpresa am = em.find(ActivosEmpresa.class, idActivos);
+        em.close();
+        return am;
     }
 
     public void actualizarProducto(ActivosEmpresa activosEmpresa) throws Exception {
         em.merge(activosEmpresa);
+        em.close();
     }
 
     public ActivosEmpresa buscarActivosInsertar(String codigoActivos) throws Exception {
@@ -47,7 +51,7 @@ public class DaoActivosEmpresa {
             //query.setParameter("codigoProducto", codigoProducto);
 
             c = query.getSingleResult();
-
+            em.close();
         } catch (Exception e) {
             // TODO: handle exception
             return null;
@@ -61,16 +65,16 @@ public class DaoActivosEmpresa {
 //           String jpql = "SELECT p FROM ActivosEmpresa p " + "WHERE codigoActivos  = '" 
 //                    + parametro+"' OR nombre = '" + parametro+"'  OR numeroSerie = '" + parametro+"' ";
 
-      String jpql = "SELECT p FROM ActivosEmpresa p WHERE codigoActivos LIKE :parametro OR nombre LIKE :parametro OR numeroSerie LIKE :parametro";
+            String jpql = "SELECT p FROM ActivosEmpresa p WHERE codigoActivos LIKE :parametro OR nombre LIKE :parametro OR numeroSerie LIKE :parametro";
             TypedQuery<ActivosEmpresa> query = em.createQuery(jpql, ActivosEmpresa.class);
-              query.setParameter("parametro", parametro+ "%");
+            query.setParameter("parametro", parametro + "%");
 //            String jpqsl = "SELECT p FROM LoginHistoricos p "
 //                    + " WHERE id_socio LIKE :id";
 //            Query q = em.createQuery(jpql, LoginHistoricos.class);
 //            q.setParameter("id", id + "%");
 //            return q.getResultList();
             c = query.getSingleResult();
-
+            em.close();
         } catch (Exception e) {
             // TODO: handle exception
             return null;
@@ -78,22 +82,22 @@ public class DaoActivosEmpresa {
         return c;
     }
 
-        public List<ActivosEmpresa> buscarActivosLista(String parametro) throws Exception {
+    public List<ActivosEmpresa> buscarActivosLista(String parametro) throws Exception {
         List<ActivosEmpresa> c = null;
         try {
 //           String jpql = "SELECT p FROM ActivosEmpresa p " + "WHERE codigoActivos  = '" 
 //                    + parametro+"' OR nombre = '" + parametro+"'  OR numeroSerie = '" + parametro+"' ";
 
-      String jpql = "SELECT p FROM ActivosEmpresa p WHERE codigoActivos LIKE :parametro OR nombre LIKE :parametro OR numeroSerie LIKE :parametro";
+            String jpql = "SELECT p FROM ActivosEmpresa p WHERE codigoActivos LIKE :parametro OR nombre LIKE :parametro OR numeroSerie LIKE :parametro";
             TypedQuery<ActivosEmpresa> query = em.createQuery(jpql, ActivosEmpresa.class);
-              query.setParameter("parametro", parametro+ "%");
+            query.setParameter("parametro", parametro + "%");
 //            String jpqsl = "SELECT p FROM LoginHistoricos p "
 //                    + " WHERE id_socio LIKE :id";
 //            Query q = em.createQuery(jpql, LoginHistoricos.class);
 //            q.setParameter("id", id + "%");
 //            return q.getResultList();
             c = query.getResultList();
-
+            em.close();
         } catch (Exception e) {
             // TODO: handle exception
             return null;
@@ -115,11 +119,12 @@ public class DaoActivosEmpresa {
 //
 //        return q.getResultList();
 //    }
+
     public List<ActivosEmpresa> ListaActivosEmpresaTodos() throws Exception {
         String jpql = "SELECT c FROM ActivosEmpresa c  ";
 
         Query q = em.createQuery(jpql, ActivosEmpresa.class);
-
+        em.close();
         return q.getResultList();
     }
 
